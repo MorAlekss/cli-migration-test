@@ -13,7 +13,7 @@ async def test_get_weather():
         mock_client.__aenter__.return_value = mock_client
         mock_client.__aexit__.return_value = None
         MockClient.return_value = mock_client
-        result = get_weather("London")
+        result = await get_weather("London")
         assert "current_condition" in result
 
 @pytest.mark.asyncio
@@ -27,7 +27,7 @@ async def test_get_temperature():
         mock_client.__aenter__.return_value = mock_client
         mock_client.__aexit__.return_value = None
         MockClient.return_value = mock_client
-        result = get_temperature("London")
+        result = await get_temperature("London")
         assert result == "20"
 
 @pytest.mark.asyncio
@@ -47,5 +47,5 @@ async def test_get_forecast():
         mock_client.__aenter__.return_value = mock_client
         mock_client.__aexit__.return_value = None
         MockClient.return_value = mock_client
-        result = get_forecast("London", days=2)
+        result = await get_forecast("London", days=2)
         assert len(result) == 2
